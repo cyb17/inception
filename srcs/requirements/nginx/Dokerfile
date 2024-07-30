@@ -1,0 +1,8 @@
+# syntax=docker/dockerfile:1
+# escape=`
+
+FROM nginx
+
+WOKDIR 
+
+SHELL ["/bin/bash", "-c"]

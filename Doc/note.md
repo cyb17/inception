@@ -34,36 +34,16 @@
 <o>Debian</o> : une distribution Linux populair, open source et libre, developpe par une communaute de benevoles. Elle est stable, robuste et a une vaste depot de logiciels.  
 <o>FastCGI</o> : mode ameliore du CGI original, est un protocole de communication qui permet au serveur web de communiquer efficacement avec des applications backend.  
 <o>Php-fpm</o> : FastCGI Process Manager, une application backend du php, integrant le protocole FastCGI, qui maintien un nombre configure de processus pour executer des scripts php et ensuite etre reutilise une fois de nouveau livre, il permet de gerer plus efficacement l'execution des scripts PHP.  
->Le serveur et l'application backend se communique a l'aide du protocol FastCGI et d'une socket, en suivant le principe du client-serveur.
+>Le serveur et l'application backend se communique a l'aide du protocol FastCGI et d'une socket, en suivant le principe du client-serveur.  
 
-<o>Docker-network</o> :
-
-WordPress :
-
-MariaDB :
-
-
-hacky-patch :
-
-tail -f : 
-
-daemons :
-
-host, --link, links :
-
-PID 1 :
-
-latest :
-
-Docker secret :
-
-fichier .env :
-
-port 443 :
-
-redis-cache :
-
-server FTP :
-
-Adminer :
+<o>latest</o> : est utilisé pour désigner la dernière version d'une image Docker.  
+<o>WordPress</o> : un systeme de gestion de contenu gratuit, libre, et open-source, permet de creer et gerer differents types de site Web.  
+<o>MariaDB</o> : un système de gestion de base de données relationnelle open-source, qui est un fork de MySQL.  
+<o>hacky-patch</o> :  un terme informel utilisé pour décrire une solution temporaire ou improvisée apportée pour résoudre un problème dans un logiciel ou un système. Décrit une solution qui, bien que fonctionnelle, n'est pas idéale ou élégante.  
+<o>tail -f</o> : un outil essentiel pour surveiller les fichiers de log et d'autres fichiers en temps réel dans les systèmes Unix et Linux. Elle fournit une vue en continu des nouvelles lignes ajoutées à un fichier, ce qui est particulièrement utile pour le débogage, la surveillance des systèmes, et l'analyse des données en temps réel.  
+<o>host</o> : commande pour obtenir les infos DNS s'un nom de domaine, syntaxe : host [options] [nom de domaine].  
+<o>link</o> : command pour creer un lien physique d'un fichier, syntaxe : link fichier1.txt lien1.txt  
+<o>links</o>: un logiciel libre, navigateur de web en mode texte.  
+<o>PID 1</o> : le premier processus créé par le noyau après le démarrage du système, generalement appele init ou systemd. Il est chargé de lancer les services système, de gérer les processus en cours, et d'assurer le bon fonctionnement général du système.  
+<o>port 443</o> : port standard pour HTTPS, utilisé pour sécuriser les communications sur Internet.  
 
