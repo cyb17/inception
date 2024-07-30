@@ -1,7 +1,9 @@
 # syntax=docker/dockerfile:1
-# escape=`
 
-FROM nginx
+FROM Debian:11
+
+RUN apt update \
+	&& apt install nginx openssl \
 
 WOKDIR 
 
