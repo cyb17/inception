@@ -1,49 +1,99 @@
-<style>o{ color: orange }</style>
-
 # Inception
 
-<o>Machine virtuelle</o> : un environnement entierement virtualisee qui fonctionne sur une machine physique. Elle execute son propre OS et bénéficie de ses propres ressources materielles : CPU, mémoire RAM, disque dur et carte réseau.  
-<o>Conteneur</o>: est une virtualition leger qui se passe au niveau du OS. Il permet 	d'encapsuler une application et toutes ses dependances dans un environnement isole et portable. Il utilise les fonctionnalites Namespaces et Cgroups du noyau de Linux.
+Ce projet a pour but :   
+- apprendre a utiliser Docker.  
+- approfondir les connaissances en systeme d'administration.  
 
-- Namespaces : Fournissent l'isolation des environnements et des ressources, permettant à des processus de fonctionner comme s'ils étaient dans des systèmes séparés.
-- Cgroups : Gèrent et limitent l'utilisation des ressources système pour des groupes de processus, garantissant une gestion efficace et équitable des ressources.
+#### Machine virtuelle
+Un environnement entierement virtualisee qui fonctionne sur une machine physique. Elle execute son propre OS et bénéficie de ses propres ressources materielles : CPU, mémoire RAM, disque dur et carte réseau.  
 
->Tous les deux permet l'isolement des applications et augmente sa portabilite. Cependant, un conteneur consomme moins de ressources et se demarrer bcp plus vite que le vm. Il est aussi plus facile a gerer grace a des outils d'orchestration comme Kubernetes et peut etre utilise sur tout les ordinateurs qui autorise le type de conteneur utilise.
+#### Conteneur
+Un conteneur est une unité de logiciel qui contient tout ce dont une application a besoin pour fonctionner : le code, les bibliothèques, les dépendances, etc. Les conteneurs partagent le même noyau du système d'exploitation, mais sont isolés les uns des autres.  
 
 ![](./img.webp)
 
+>Tous les deux permet d'isoler une application et augmenter sa portabilite. Cependant, un conteneur consomme moins de ressources et se demarre bcp plus vite que le vm. Il est aussi plus facile a gerer et orchestrer. Et peut etre utilise sur tout type d'ordinateur qui supporteun moteur de conteneurisation compatible.  
+
 ## Docker
+C'est un plateforme de conteneurs lancee en 2013 qui permet de creer facilement des conteneurs et des applications bases sur des conteneurs. [Docker.docs](https://docs.docker.com/desktop/)  
 
-<o>Docker</o> : plateforme de conteneurs lancee en 2013 qui permet de creer facilement des conteneurs et des applications bases sur des conteneurs. [Docker.docs](https://docs.docker.com/desktop/)  
-<o>Docker Engine</o> : souvent abrege en Docker, une application a installer,c'est le moteur du systeme Docker permettant de regrouper et relie les differents composants entre eux.  
-<o>Dockerfile</o> : fichier qui contient une serie d'instruction necessaire pour construire une image Docker.  
-<o>Conteneur Docker</o> : une instance executable d'une image Docker.  
-<o>Image Docker</o> : un paquet immuable contenant tout le nécessaire pour exécuter une application (code, bibliothèques, dépendances, fichiers de configuration)  
-<o>Volume Docker</o> : un mecanisme pour conserver les données au-delà du cycle de vie d'un conteneur, une unite de stockage cree par Docker.  
-<o>DockerHub</o> : registre officiel du Docker permet de trouver, utiliser et partager les images Docker.  
-<o>Docker-compose.yml</o> : un fichier de configuration utilise par Docker Compose, ecrit en YAML.  
-<o>Docker Compose</o> : un outil pour definir et gerer des environnements muti-conteneurs, permet de demarrer, arreter et configurer des ensembles de conteneurs ensemble. [En savoir plus](https://datascientest.com/docker-compose-tout-savoir)  
+#### Dockerfile
+Un fichier de configuration contenant une série d'instructions pour construire une image Docker. Chaque instruction dans un Dockerfile crée une couche dans l'image Docker.
 
-## CLI (Command Line Interface)
+#### Image Docker
+Un modèle en lecture seule qui permet d'instancier un conteneur Docker executable.
+
+#### Volume Docker
+Un mecanisme pour conserver les données au-delà du cycle de vie d'un conteneur, une unite de stockage cree par Docker.  
+
+#### Docker Compose
+Un outil pour definir et gerer des environnements muti-conteneurs. Il permet de demarrer, arreter et configurer des ensembles de conteneurs ensemble avec un fichier de configuration `Docker-compose.yml` et des lignes de commande. [En savoir plus](https://datascientest.com/docker-compose-tout-savoir)  
+
+#### DockerHub
+Registre officiel du Docker, permet de trouver, utiliser et partager les images Docker.   
+
+### Fonctionnement du Docker
+
+#### Architecture  
+![](./docker-architecture.webp)
+
+Docker contient un Docker CLI (Command Line Interface) qui recoit les commandes d'utilisateurs et les envoie ensuite a Docker Daemon.  
+Docker Daemon est un processus persistent de gestion execute en arriere-plan. Selon les commandes recues, il executera des taches correspondantes.  
+Il gere les images, les conteneurs, les reseaux, les volumes et la communication avec des API Docker.
+
+#### Les commandes Docker
+```bash
+docker --help				# aide commande Docker 
+docker < command > --help   # aide commande spécifique Docker
+
+docker ps		# Lister les conteneurs en cours d'exécution
+docker images	# Lister les images Docker
+docker rm < id >	# Supprimer un conteneur
+docker rmi < id >	# Supprimer une image
+docker logs < id >	# Afficher les logs d'un conteneur
+docker start/stop/restart < id > # Démarrer/Arreter/redemarrer un conteneur
+
+docker exec -it < id > < command > # Exécuter une commande dans un conteneur
+docker build -t < image_name >:< tag > < path_dockerfile > # Construire une image à partir d'un Dockerfile
+docker network ls	# Lister les réseaux Docker
+docker volume ls	# Lister les volumes Docker
+docker-compose build	# Construire les images du fichier docker-compose.yml
+docker-compose up/down	# Lancer/Arreter les services du fichier docker-compose.yml
+
+```
 
 
+## Autres termes
+#### YAML
+un format de representation de donnees par serialisation (methode de codage d'une information en informatique) Unicode.  
+#### Alpine
+une distribution de Linux minimaliste et securisee, idéale pour les environnements conteneurisés, les systèmes embarqués et les serveurs minimalistes.  
+#### Debian
+une distribution Linux populair, open source et libre, developpe par une communaute de benevoles. Elle est stable, robuste et a une vaste depot de logiciels.  
+#### FastCGI
+mode ameliore du CGI original, est un protocole de communication qui permet au serveur web de communiquer efficacement avec des applications backend.  
+#### Php-fpm
+FastCGI Process Manager, une application backend du php, integrant le protocole FastCGI, qui maintien un nombre configure de processus pour executer des scripts php et ensuite etre reutilise une fois de nouveau livre, il permet de gerer plus efficacement l'execution des scripts PHP.  
 
-## Autres
-<o>YAML</o> : un format de representation de donnees par serialisation (methode de codage d'une information en informatique) Unicode.  
-<o>Alpine</o> : une distribution de Linux minimaliste et securisee, idéale pour les environnements conteneurisés, les systèmes embarqués et les serveurs minimalistes.  
-<o>Debian</o> : une distribution Linux populair, open source et libre, developpe par une communaute de benevoles. Elle est stable, robuste et a une vaste depot de logiciels.  
-<o>FastCGI</o> : mode ameliore du CGI original, est un protocole de communication qui permet au serveur web de communiquer efficacement avec des applications backend.  
-<o>Php-fpm</o> : FastCGI Process Manager, une application backend du php, integrant le protocole FastCGI, qui maintien un nombre configure de processus pour executer des scripts php et ensuite etre reutilise une fois de nouveau livre, il permet de gerer plus efficacement l'execution des scripts PHP.  
 >Le serveur et l'application backend se communique a l'aide du protocol FastCGI et d'une socket, en suivant le principe du client-serveur.  
 
-<o>latest</o> : est utilisé pour désigner la dernière version d'une image Docker.  
-<o>WordPress</o> : un systeme de gestion de contenu gratuit, libre, et open-source, permet de creer et gerer differents types de site Web.  
-<o>MariaDB</o> : un système de gestion de base de données relationnelle open-source, qui est un fork de MySQL.  
-<o>hacky-patch</o> :  un terme informel utilisé pour décrire une solution temporaire ou improvisée apportée pour résoudre un problème dans un logiciel ou un système. Décrit une solution qui, bien que fonctionnelle, n'est pas idéale ou élégante.  
-<o>tail -f</o> : un outil essentiel pour surveiller les fichiers de log et d'autres fichiers en temps réel dans les systèmes Unix et Linux. Elle fournit une vue en continu des nouvelles lignes ajoutées à un fichier, ce qui est particulièrement utile pour le débogage, la surveillance des systèmes, et l'analyse des données en temps réel.  
-<o>host</o> : commande pour obtenir les infos DNS s'un nom de domaine, syntaxe : host [options] [nom de domaine].  
-<o>link</o> : command pour creer un lien physique d'un fichier, syntaxe : link fichier1.txt lien1.txt  
-<o>links</o>: un logiciel libre, navigateur de web en mode texte.  
-<o>PID 1</o> : le premier processus créé par le noyau après le démarrage du système, generalement appele init ou systemd. Il est chargé de lancer les services système, de gérer les processus en cours, et d'assurer le bon fonctionnement général du système.  
-<o>port 443</o> : port standard pour HTTPS, utilisé pour sécuriser les communications sur Internet.  
-
+#### latest
+est utilisé pour désigner la dernière version d'une image Docker.  
+#### WordPress
+un systeme de gestion de contenu gratuit, libre, et open-source, permet de creer et gerer differents types de site Web.  
+#### MariaDB
+un système de gestion de base de données relationnelle open-source, qui est un fork de MySQL.  
+#### hacky-patch
+un terme informel utilisé pour décrire une solution temporaire ou improvisée apportée pour résoudre un problème dans un logiciel ou un système. Décrit une solution qui, bien que fonctionnelle, n'est pas idéale ou élégante.  
+#### tail -f
+un outil essentiel pour surveiller les fichiers de log et d'autres fichiers en temps réel dans les systèmes Unix et Linux. Elle fournit une vue en continu des nouvelles lignes ajoutées à un fichier, ce qui est particulièrement utile pour le débogage, la surveillance des systèmes, et l'analyse des données en temps réel.  
+#### host
+commande pour obtenir les infos DNS s'un nom de domaine, syntaxe : host [options] [nom de domaine].  
+#### link
+command pour creer un lien physique d'un fichier, syntaxe : link fichier1.txt lien1.txt  
+#### links
+un logiciel libre, navigateur de web en mode texte.  
+#### PID 1
+le premier processus créé par le noyau après le démarrage du système, generalement appele init ou systemd. Il est chargé de lancer les services système, de gérer les processus en cours, et d'assurer le bon fonctionnement général du système.  
+#### port 443
+port standard pour HTTPS, utilisé pour sécuriser les communications sur Internet.  
