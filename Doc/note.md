@@ -32,7 +32,7 @@ Un outil pour definir et gerer des environnements muti-conteneurs. Il permet de 
 #### DockerHub
 Registre officiel du Docker, permet de trouver, utiliser et partager les images Docker.   
 
-### Fonctionnement du Docker
+### Comment fonctionne Docker ?
 
 #### Architecture  
 ![](./docker-architecture.webp)
@@ -46,22 +46,52 @@ Il gere les images, les conteneurs, les reseaux, les volumes et la communication
 docker --help				# aide commande Docker 
 docker < command > --help   # aide commande spécifique Docker
 
-docker ps		# Lister les conteneurs en cours d'exécution
-docker images	# Lister les images Docker
-docker rm < id >	# Supprimer un conteneur
-docker rmi < id >	# Supprimer une image
-docker logs < id >	# Afficher les logs d'un conteneur
-docker start/stop/restart < id > # Démarrer/Arreter/redemarrer un conteneur
+docker ps -a		# Lister tous les conteneurs,quel que soit leur etat
+docker images		# Lister les images Docker
+docker rm < id/name >		# Supprimer un conteneur
+docker rmi < id/name >		# Supprimer une image
+docker logs < id/name >		# Afficher les logs d'un conteneur
+docker start/stop/restart < id/name >	# Dém/Arr/Red un conteneur
 
-docker exec -it < id > < command > # Exécuter une commande dans un conteneur
-docker build -t < image_name >:< tag > < path_dockerfile > # Construire une image à partir d'un Dockerfile
-docker network ls	# Lister les réseaux Docker
-docker volume ls	# Lister les volumes Docker
-docker-compose build	# Construire les images du fichier docker-compose.yml
-docker-compose up/down	# Lancer/Arreter les services du fichier docker-compose.yml
+# Construire une image à partir d'un Dockerfile
+# tag: specifie la version de cette image, pas obligatoire, par defaut: latest
+docker build -t < image_name >:< tag > < path_Dockerfile_directory >
+
+# docker exec -it < id/name > < command > # Exécuter une commande dans un conteneur
+# docker network ls	# Lister les réseaux Docker
+# docker volume ls	# Lister les volumes Docker
+# docker-compose build	# Construire les images du fichier docker-compose.yml
+# docker-compose up/down	# Lancer/Arreter les services du fichier docker-compose.yml
 
 ```
 
+## Web
+
+### Fonctionnement du protocol SSL/TLS
+Secure Sockets Layer/Transport Layer Security utilise le chiffrement pour sécuriser les données des utilisateurs, authentifier l'identité des sites web et empêcher les attaquants de falsifier les communications sur Internet.
+
+![](./SSL:TLS.png)
+
+[En savoir plus](https://www.cloudflare.com/fr-fr/learning/ssl/how-does-ssl-work/)
+
+![](./differences-entre-http-and-https.png)
+
+#### WordPress
+un systeme de gestion de contenu gratuit, libre, et open-source, permet de creer et gerer differents types de site Web.  
+
+
+### Fonctionnement du Systeme de Gestion de Base de Donnees (SGBD)
+un logiciel permettant aux utilisateurs finaux de manipuler les données d’une database. Par exemple, récupérer, ajouter, modifier, compresser, extraire ou supprimer des données. Sans SGBD, la base de données n’est pas fonctionnelle.  
+[En savoir plus](https://datascientest.com/sgbd-tout-savoir)
+
+#### MariaDB
+un système de gestion de base de données relationnelle open-source, qui est un fork de MySQL.  
+#### FastCGI
+mode ameliore du CGI original, est un protocole de communication qui permet au serveur web de communiquer efficacement avec des applications backend.  
+#### Php-fpm
+FastCGI Process Manager, une application backend du php, integrant le protocole FastCGI, qui maintien un nombre configure de processus pour executer des scripts php et ensuite etre reutilise une fois de nouveau livre, il permet de gerer plus efficacement l'execution des scripts PHP.  
+
+>Le serveur et l'application backend se communique a l'aide du protocol FastCGI et d'une socket, en suivant le principe du client-serveur.  
 
 ## Autres termes
 #### YAML
@@ -70,19 +100,8 @@ un format de representation de donnees par serialisation (methode de codage d'un
 une distribution de Linux minimaliste et securisee, idéale pour les environnements conteneurisés, les systèmes embarqués et les serveurs minimalistes.  
 #### Debian
 une distribution Linux populair, open source et libre, developpe par une communaute de benevoles. Elle est stable, robuste et a une vaste depot de logiciels.  
-#### FastCGI
-mode ameliore du CGI original, est un protocole de communication qui permet au serveur web de communiquer efficacement avec des applications backend.  
-#### Php-fpm
-FastCGI Process Manager, une application backend du php, integrant le protocole FastCGI, qui maintien un nombre configure de processus pour executer des scripts php et ensuite etre reutilise une fois de nouveau livre, il permet de gerer plus efficacement l'execution des scripts PHP.  
-
->Le serveur et l'application backend se communique a l'aide du protocol FastCGI et d'une socket, en suivant le principe du client-serveur.  
-
 #### latest
 est utilisé pour désigner la dernière version d'une image Docker.  
-#### WordPress
-un systeme de gestion de contenu gratuit, libre, et open-source, permet de creer et gerer differents types de site Web.  
-#### MariaDB
-un système de gestion de base de données relationnelle open-source, qui est un fork de MySQL.  
 #### hacky-patch
 un terme informel utilisé pour décrire une solution temporaire ou improvisée apportée pour résoudre un problème dans un logiciel ou un système. Décrit une solution qui, bien que fonctionnelle, n'est pas idéale ou élégante.  
 #### tail -f
