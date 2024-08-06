@@ -116,3 +116,7 @@ un logiciel libre, navigateur de web en mode texte.
 le premier processus créé par le noyau après le démarrage du système, generalement appele init ou systemd. Il est chargé de lancer les services système, de gérer les processus en cours, et d'assurer le bon fonctionnement général du système.  
 #### port 443
 port standard pour HTTPS, utilisé pour sécuriser les communications sur Internet.  
+
+
+## Informations importantes du sujet
+

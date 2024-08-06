@@ -34,7 +34,7 @@ RUN wget http://fr.wordpress.org/latest-fr_FR.tar.gz \
 	&& rmdir wordpress
 
 # Configurer PHP-FPM pour WordPress
-COPY conf/php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
+COPY conf/php-fpm.conf .
 
 EXPOSE 9000
 
