@@ -93,6 +93,15 @@ FastCGI Process Manager, une application backend du php, integrant le protocole 
 
 >Le serveur et l'application backend se communique a l'aide du protocol FastCGI et d'une socket, en suivant le principe du client-serveur.  
 
+
+## Systeme d'administration
+
+connexion root : su -
+pour qu'un user puisse utilser sudo :
+	- ajouter le dans le groupe sudo
+	- configurer les doits avec "sudo visudo"
+lors d'utilisation de sudo par user : mdp de connexion user et non celui du root!
+
 ## Autres termes
 #### YAML
 un format de representation de donnees par serialisation (methode de codage d'une information en informatique) Unicode.  

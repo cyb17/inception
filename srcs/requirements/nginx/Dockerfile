@@ -10,7 +10,7 @@ RUN	apt update \
 # creer ces repertoires dans le systeme fichier du conteneur si ils n'existent pas deja
 RUN	mkdir -p /etc/ssl/certs /etc/ssl/private \
 	# generer un certificat type auto-signe(x509), une clee RSA de 2048 bits
-	&& openssl req -x509 -newkey rsa:2048 \
+	&& openssl req -x509 -newkey rsa:4096 \
 	-keyout /etc/ssl/private/key.pem \
 	-out /etc/ssl/certs/cert.pem \
 	# d'une duree de validite de 365j et utilise l'algo sha256 pour le signer
