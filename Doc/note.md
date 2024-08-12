@@ -57,6 +57,9 @@ docker start/stop/restart < id/name >	# Dém/Arr/Red un conteneur
 # tag: specifie la version de cette image, pas obligatoire, par defaut: latest
 docker build -t < image_name >:< tag > < path_Dockerfile_directory >
 
+# creer le conteneur, -d=en mode detache, -p lier les ports
+docker run -d -p port_hote:port_container --name nom_container < image_name >
+
 # docker exec -it < id/name > < command > # Exécuter une commande dans un conteneur
 # docker network ls	# Lister les réseaux Docker
 # docker volume ls	# Lister les volumes Docker
@@ -66,6 +69,9 @@ docker build -t < image_name >:< tag > < path_Dockerfile_directory >
 ```
 
 ## Web
+
+### Nginx
+![comprendre la configuration de Nginx](https://www.nicelydev.com/nginx/autres-directives-server)
 
 ### Fonctionnement du protocol SSL/TLS
 Secure Sockets Layer/Transport Layer Security utilise le chiffrement pour sécuriser les données des utilisateurs, authentifier l'identité des sites web et empêcher les attaquants de falsifier les communications sur Internet.
