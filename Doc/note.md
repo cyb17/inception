@@ -49,6 +49,7 @@ docker < command > --help   # aide commande spécifique Docker
 docker ps -a		# Lister tous les conteneurs,quel que soit leur etat
 docker images		# Lister les images Docker
 docker rm < id/name >		# Supprimer un conteneur
+docker rm $(docker ps -a -q) # Supprimer tous les contenaires, -q = liste des ID 
 docker rmi < id/name >		# Supprimer une image
 docker logs < id/name >		# Afficher les logs d'un conteneur
 docker start/stop/restart < id/name >	# Dém/Arr/Red un conteneur
