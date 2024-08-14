@@ -6,7 +6,7 @@ DB_PASSWORD=000
 DB_ROOT_PASSWORD=111
 
 service mariadb start
-
+ 
 # -v : afficher les informations supplementaires 
 mariadb -v -u root << EOF
 CREATE DATABASE IF NOT EXISTS ${DB_NAME};
