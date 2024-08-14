@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-EXPOSE 9000
+EXPOSE 443
 
 RUN apt update && apt install nginx openssl -y
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
