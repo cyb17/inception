@@ -15,7 +15,8 @@ RUN service php7.4-fpm stop
 
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 
-RUN mkdir -p /var/www \
+RUN mkdir -p /run/php \
+	&& mkdir -p /var/run/php \
 	&& mkdir -p /var/www/inception
 
 COPY ./tools/install-wordpress.sh /bin/install-wordpress.sh

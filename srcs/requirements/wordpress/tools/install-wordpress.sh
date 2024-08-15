@@ -1,30 +1,32 @@
 #!/bin/bash
 
-# des qu'il y a une erreur le script s'arrete
-set -e
-
 # DB_NAME="wordpress"
 # DB_USER="user"
 # DB_PASSWORD="000"
+# DB_USER_EMAIL="user@email.com"
 # DB_HOST="localhost"
 # WP_URL="yachen.42.fr"
 # WP_DIR="/var/www/inception"
-# WP_TITLE="My Website"
+# WP_TITLE="MyWebsite"
 # WP_ADMIN="yachen"
 # WP_ADMIN_PASSWORD="111"
 # WP_ADMIN_EMAIL="yachen@email.com"
 
+# permet au script de s'arreter si une erreur se produite
+set -e
+
 # Télécharger et extraire WordPress
-wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
-tar -xzf /tmp/wordpress.tar.gz -C /tmp
-mv /tmp/wordpress/* $WP_DIR/
+if [ -f "$WP_DIR/wp-config.php" ]; then
+    echo "wordpress already installed"
+else
+    wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
+    tar -xzf /tmp/wordpress.tar.gz -C /var/www
+    # mv /var/www/wordpress $WP_DIR
+    rm /tmp/wordpress.tar.gz
+fi
 
 # Configurer les permissions
 chown -R www-data:www-data $WP_DIR
-
-# Nettoyer les fichiers temporaires
-rm /tmp/wordpress.tar.gz
-rm -rf /tmp/wordpress
 
 # Préparer wp-config.php
 cp $WP_DIR/wp-config-sample.php $WP_DIR/wp-config.php
@@ -45,6 +47,14 @@ php /bin/wp-cli.phar core install \
     --admin_user=$WP_ADMIN \
     --admin_password=$WP_ADMIN_PASSWORD \
     --admin_email=$WP_ADMIN_EMAIL \
+    --allow-root
+
+php /bin/wp-cli.phar user create \
+    $DB_USER \
+    $DB_USER_EMAIL \
+    --path=$WP_DIR \
+    --user_pass=$DB_PASSWORD \
+    --role=subscriber \
     --allow-root
 
 # Nettoyer
