@@ -1,9 +1,9 @@
 #!/bin/bash
 
-DB_NAME=mydata
-DB_USER=user
-DB_PASSWORD=000
-DB_ROOT_PASSWORD=111
+# DB_NAME=wordpress
+# DB_USER=user
+# DB_PASSWORD=000
+# DB_ROOT_PASSWORD=111
 
 service mariadb start
  

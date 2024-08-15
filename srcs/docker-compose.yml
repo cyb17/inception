@@ -1,0 +1,55 @@
+version: '3.8'
+
+networks:
+
+  inception-net:
+    driver: bridge
+
+services:
+
+  mariadb:
+    image: ./mariadb
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - db-data: /home/yachen/data
+    networks:
+      - inception-net
+
+  wordpress:
+    image: ./wordpress
+    environment:
+      DB_HOST: ${DB_HOST}
+      WP_URL: ${WP_URL}
+      WP_DIR: ${WP_DIR}
+      WP_TITLE: ${WP_TITLE}
+      WP_ADMIN: ${WP_ADMIN}
+      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+    volumes:
+      - wp-data: /home/yachen/data
+    networks:
+      - inception-net
+    depends_on:
+      - mariadb
+
+  nginx:
+    image: ./nginx
+    ports: 
+      - 443:443
+    networks:
+      - inception-net
+    depends_on:
+      - wordpress
+
+volumes:
+
+  db-data:
+    driver: local
+  wp-data:
+    driver: local
+
+    
