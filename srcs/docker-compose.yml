@@ -15,7 +15,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     volumes:
-      - db-data: /home/yachen/data
+      - db-data: /home/debian/data
     networks:
       - inception-net
 
@@ -30,7 +30,7 @@ services:
       WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
       WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
     volumes:
-      - wp-data: /home/yachen/data
+      - wp-data: /home/debian/data
     networks:
       - inception-net
     depends_on:
