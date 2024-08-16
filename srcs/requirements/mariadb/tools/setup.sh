@@ -17,7 +17,6 @@ SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$DB_ROOT_PASSWORD');
 EOF
 
 sleep 5
-
 service mariadb stop
 
 # executer la commande suivante su Dockerfile

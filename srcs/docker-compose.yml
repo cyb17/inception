@@ -1,52 +1,33 @@
 name: inception
 
-networks:
-
-  inception-net:
-    driver: bridge
-
 services:
 
   mariadb:
     build: ./requirements/mariadb
-    environment:
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    env_file: .env
     volumes:
-      - /home/yachen/data/db:/var/lib/mysql
+      - db:/var/lib/mysql
     networks:
       - inception-net
+    init: true
 
   wordpress:
     build: ./requirements/wordpress
-    environment:
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      DB_USER_EMAIL: ${DB_USER_EMAIL}
-      DB_HOST: ${DB_HOST}
-      WP_URL: "${WP_URL}"
-      WP_DIR: ${WP_DIR}
-      WP_TITLE: ${WP_TITLE}
-      WP_ADMIN: ${WP_ADMIN}
-      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
-      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+    env_file: .env
     volumes:
-      - /home/yachen/data/html:/var/www/html
+      - wp:/var/www/wordpress
     networks:
       - inception-net
+    init: true
     depends_on:
       - mariadb
 
   nginx:
     build: ./requirements/nginx
     ports: 
-      - 443:443      
+      - '443:443'   
     volumes:
-      - /home/yachen/data/html:/var/www/html
+      - wp:/var/www/wordpress
     networks:
       - inception-net
     depends_on:
@@ -54,9 +35,20 @@ services:
 
 volumes:
 
-  /home/yachen/data:
+  db:
     driver: local
-  /home/yachen/data:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yachen/data/db
+  wp:
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yachen/data/wp
 
-    
+networks:
+
+  inception-net:
+    driver: bridge

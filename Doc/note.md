@@ -41,31 +41,28 @@ Docker contient un Docker CLI (Command Line Interface) qui recoit les commandes 
 Docker Daemon est un processus persistent de gestion execute en arriere-plan. Selon les commandes recues, il executera des taches correspondantes.  
 Il gere les images, les conteneurs, les reseaux, les volumes et la communication avec des API Docker.
 
-#### Les commandes Docker
+#### Les commandes Docker utile pour le projet
 ```bash
-docker --help				# aide commande Docker 
-docker < command > --help   # aide commande spécifique Docker
 
-docker ps -a		# Lister tous les conteneurs,quel que soit leur etat
-docker images		# Lister les images Docker
-docker rm < id/name >		# Supprimer un conteneur
-docker rm $(docker ps -a -q) # Supprimer tous les contenaires, -q = liste des ID 
-docker rmi < id/name >		# Supprimer une image
-docker logs < id/name >		# Afficher les logs d'un conteneur
+docker --help							# aide commande Docker 
+docker < command > --help   			# aide commande spécifique Docker
+docker ps -a							# Lister tous les conteneurs,quel que soit leur etat
+docker images							# Lister les images Docker
+docker rm < id/name >					# Supprimer un conteneur
+docker rmi < id/name >					# Supprimer une image
+docker rm $(docker ps -a -q)			# Supprimer tous les contenaires, -q = liste des ID 
+docker logs < id/name >					# Afficher les logs d'un conteneur
 docker start/stop/restart < id/name >	# Dém/Arr/Red un conteneur
-
-# Construire une image à partir d'un Dockerfile
-# tag: specifie la version de cette image, pas obligatoire, par defaut: latest
-docker build -t < image_name >:< tag > < path_Dockerfile_directory >
+docker build < Dockerfile_directory >	# Construire l'image docker
+docker exec -it < id/name > < command > # Exécuter une commande dans un conteneur
 
 # creer le conteneur, -d=en mode detache, -p lier les ports
 docker run -d -p port_hote:port_container --name nom_container < image_name >
 
-# docker exec -it < id/name > < command > # Exécuter une commande dans un conteneur
-# docker network ls	# Lister les réseaux Docker
-# docker volume ls	# Lister les volumes Docker
-# docker-compose build	# Construire les images du fichier docker-compose.yml
-# docker-compose up/down	# Lancer/Arreter les services du fichier docker-compose.yml
+docker network ls						# Lister les réseaux Docker
+docker volume ls						# Lister les volumes Docker
+docker-compose build					# Construire les images du fichier docker-compose.yml
+docker-compose up/down/restart			# Dém/Arr/Red les conteneurs des images construites
 
 ```
 
@@ -132,7 +129,3 @@ un logiciel libre, navigateur de web en mode texte.
 le premier processus créé par le noyau après le démarrage du système, generalement appele init ou systemd. Il est chargé de lancer les services système, de gérer les processus en cours, et d'assurer le bon fonctionnement général du système.  
 #### port 443
 port standard pour HTTPS, utilisé pour sécuriser les communications sur Internet.  
-
-
-## Informations importantes du sujet
-
