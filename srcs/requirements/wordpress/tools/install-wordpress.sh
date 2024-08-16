@@ -22,7 +22,6 @@ then
 else
     wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
     tar -xzf /tmp/wordpress.tar.gz -C /var/www
-    # mv /var/www/wordpress $WP_DIR
     rm /tmp/wordpress.tar.gz
 fi
 
@@ -32,11 +31,12 @@ chown -R www-data:www-data $WP_DIR
 # Préparer wp-config.php
 cp $WP_DIR/wp-config-sample.php $WP_DIR/wp-config.php
 
-# Modifier wp-config.php pour inclure les informations de base de données
 sed -i "s/database_name_here/$DB_NAME/" $WP_DIR/wp-config.php
 sed -i "s/username_here/$DB_USER/" $WP_DIR/wp-config.php
 sed -i "s/password_here/$DB_PASSWORD/" $WP_DIR/wp-config.php
 sed -i "s/localhost/$DB_HOST/" $WP_DIR/wp-config.php
+
+sleep 5
 
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /bin/wp-cli.phar
 

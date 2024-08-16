@@ -17,7 +17,6 @@ COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 
 RUN mkdir -p /run/php \
 	&& mkdir -p /var/run/php \
-	&& mkdir -p /var/www/inception
 
 COPY ./tools/install-wordpress.sh /bin/install-wordpress.sh
 

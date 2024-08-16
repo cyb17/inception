@@ -15,7 +15,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     volumes:
-      - db-data:/home/debian/data
+      - /home/yachen/data/db:/var/lib/mysql
     networks:
       - inception-net
 
@@ -35,7 +35,7 @@ services:
       WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
       WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
     volumes:
-      - wp-data:/home/debian/data
+      - /home/yachen/data/html:/var/www/html
     networks:
       - inception-net
     depends_on:
@@ -44,7 +44,9 @@ services:
   nginx:
     build: ./requirements/nginx
     ports: 
-      - 443:443
+      - 443:443      
+    volumes:
+      - /home/yachen/data/html:/var/www/html
     networks:
       - inception-net
     depends_on:
@@ -52,9 +54,9 @@ services:
 
 volumes:
 
-  db-data:
+  /home/yachen/data:
     driver: local
-  wp-data:
+  /home/yachen/data:
     driver: local
 
     
