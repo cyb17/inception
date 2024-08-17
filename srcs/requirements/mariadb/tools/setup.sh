@@ -7,8 +7,7 @@
 
 service mariadb start
  
-# -v : afficher les informations supplementaires 
-mariadb -v -u root << EOF
+mariadb -u root << EOF
 CREATE DATABASE IF NOT EXISTS ${DB_NAME};
 CREATE USER IF NOT EXISTS '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';
 GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';
