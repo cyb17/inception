@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ajouter les informations du credentials dans l'environnement courant
-source SECRETS
+source $SECRETS
 DB_PASSWORD=$(cat $DB_PASSWORD)
 DB_ROOT_PASSWORD=$(cat $DB_ROOT_PASSWORD)
 

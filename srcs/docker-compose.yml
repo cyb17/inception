@@ -1,31 +1,31 @@
 services:
 
   mariadb:
+    container_name: mariadb
     build: ./requirements/mariadb
     env_file:
       - .env
     volumes:
       - db:/var/lib/mysql
     secrets:
-      - secrets_dir
-      # - credentials
-      # - db_password
-      # - db_root_password
+      - credentials
+      - db_password
+      - db_root_password
     networks:
       - inception-net
     init: true
     restart: on-failure
 
   wordpress:
+    container_name: wordpress
     build: ./requirements/wordpress
     env_file:
       - .env
     volumes:
       - wp:/var/www/wordpress
     secrets:
-      - secrets_dir
-      # - credentials
-      # - db_password
+      - credentials
+      - db_password
     networks:
       - inception-net
     init: true
@@ -34,6 +34,7 @@ services:
       - mariadb
 
   nginx:
+    container_name: nginx
     build: ./requirements/nginx
     ports: 
       - '443:443'   
@@ -63,14 +64,12 @@ volumes:
 
 secrets:
 
-  secrets_dir:
-    secrets: ../secrets
-  # credentials:
-    # file: ../secrets/credentials.txt
-  # db_password:
-    # file: ../secrets/db_password.txt
-  # db_root_password:
-    # file: ../secrets/db_root_password.txt
+  credentials:
+    file: /home/user/inception/secrets/credentials.txt
+  db_password:
+    file: /home/user/inception/secrets/db_password.txt
+  db_root_password:
+    file: /home/user/inception/secrets/db_root_password.txt
 
 networks:
 
