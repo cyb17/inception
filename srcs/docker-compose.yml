@@ -4,18 +4,27 @@ services:
 
   mariadb:
     build: ./requirements/mariadb
-    env_file: .env
+    env_file:
+      - .env
     volumes:
       - db:/var/lib/mysql
+    secrets:
+      - credentials
+      - db_password
+      - db_root_password
     networks:
       - inception-net
     init: true
 
   wordpress:
     build: ./requirements/wordpress
-    env_file: .env
+    env_file:
+      - .env
     volumes:
       - wp:/var/www/wordpress
+    secrets:
+      - credentials
+      - db_password
     networks:
       - inception-net
     init: true
@@ -30,6 +39,7 @@ services:
       - wp:/var/www/wordpress
     networks:
       - inception-net
+    init: true
     depends_on:
       - wordpress
 
@@ -47,6 +57,15 @@ volumes:
       type: none
       o: bind
       device: /home/yachen/data/wp
+
+secrets:
+
+  credentials:
+    file: ../secrets/credentials.txt
+  db_password:
+    file: ../secrets/db_password.txt
+  db_root_password:
+    file: ../secrets/db_root_password.txt
 
 networks:
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# DB_NAME=wordpress
-# DB_USER=user
-# DB_PASSWORD=000
-# DB_ROOT_PASSWORD=111
+# ajouter les informations du credentials dans l'environnement courant
+source /run/secrets/credentials
+DB_PASSWORD=$(cat $DB_PASSWORD)
+DB_ROOT_PASSWORD=$(cat $DB_ROOT_PASSWORD)
 
 service mariadb start
  

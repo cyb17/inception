@@ -1,8 +1,12 @@
 #!/bin/bash
 
+# ajouter les informations du credentials dans l'environnement courant
+source /run/secrets/credentials
+DB_PASSWORD=$(cat $DB_PASSWORD)
+echo "$DB_USER and $DB_PASSWORD"
+
 # pour laisser le temps de demarrage au Mariadb
 sleep 10
-
 # Télécharger et extraire WordPress
 if [ -f "$WP_DIR/wp-config.php" ];
 then
@@ -17,10 +21,10 @@ fi
 chown -R www-data:www-data $WP_DIR
 cp $WP_DIR/wp-config-sample.php $WP_DIR/wp-config.php
 
-sed -i "s/database_name_here/$DB_NAME/" $WP_DIR/wp-config.php
-sed -i "s/username_here/$DB_USER/" $WP_DIR/wp-config.php
-sed -i "s/password_here/$DB_PASSWORD/" $WP_DIR/wp-config.php
-sed -i "s/localhost/$DB_HOST/" $WP_DIR/wp-config.php
+sed -i "s/database_name_here/$DB_NAME/g" $WP_DIR/wp-config.php
+sed -i "s/username_here/$DB_USER/g" $WP_DIR/wp-config.php
+sed -i "s/password_here/$DB_PASSWORD/g" $WP_DIR/wp-config.php
+sed -i "s/localhost/$DB_HOST/g" $WP_DIR/wp-config.php
 
 # Creation de user et admin a l'aide de wp-cli.phar
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /bin/wp-cli.phar
