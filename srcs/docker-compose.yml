@@ -7,9 +7,10 @@ services:
     volumes:
       - db:/var/lib/mysql
     secrets:
-      - credentials
-      - db_password
-      - db_root_password
+      - secrets_dir
+      # - credentials
+      # - db_password
+      # - db_root_password
     networks:
       - inception-net
     init: true
@@ -22,8 +23,9 @@ services:
     volumes:
       - wp:/var/www/wordpress
     secrets:
-      - credentials
-      - db_password
+      - secrets_dir
+      # - credentials
+      # - db_password
     networks:
       - inception-net
     init: true
@@ -61,12 +63,14 @@ volumes:
 
 secrets:
 
-  credentials:
-    file: ../secrets/credentials.txt
-  db_password:
-    file: ../secrets/db_password.txt
-  db_root_password:
-    file: ../secrets/db_root_password.txt
+  secrets_dir:
+    secrets: ../secrets
+  # credentials:
+    # file: ../secrets/credentials.txt
+  # db_password:
+    # file: ../secrets/db_password.txt
+  # db_root_password:
+    # file: ../secrets/db_root_password.txt
 
 networks:
 

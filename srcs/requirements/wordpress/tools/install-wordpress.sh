@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # ajouter les informations du credentials dans l'environnement courant
-source /run/secrets/credentials
+source SECRETS
 DB_PASSWORD=$(cat $DB_PASSWORD)
-echo "$DB_USER and $DB_PASSWORD"
 
 # pour laisser le temps de demarrage au Mariadb
 sleep 10
