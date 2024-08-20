@@ -65,11 +65,11 @@ volumes:
 secrets:
 
   credentials:
-    file: /home/user/inception/secrets/credentials.txt
+    file: ~/inception/secrets/credentials.txt
   db_password:
-    file: /home/user/inception/secrets/db_password.txt
+    file: ~/inception/secrets/db_password.txt
   db_root_password:
-    file: /home/user/inception/secrets/db_root_password.txt
+    file: ~/inception/secrets/db_root_password.txt
 
 networks:
 
